@@ -1,4 +1,3 @@
-// TODO : refactor in function
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.action === "getLocalStorage") {
     chrome.storage.local.get("selectMode", (result) => {
@@ -8,7 +7,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   }
 
   if (request.action === "setLocalStorage") {
-    chrome.storage.local.set({ selecMode: request.value }, function () {
+    chrome.storage.local.set({ selectMode: request.value }, function () {
       console.log("Nouvelle valeur de selectionMode définie :", request.value);
       // Confirmation
       sendResponse({ success: true });
