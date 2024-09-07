@@ -1,4 +1,4 @@
-chrome.runtime.onMessage.addListener((request, sendResponse) => {
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   /**
    * Handles requests to get the current value of `selectMode` from local storage.
    * Responds with the current value of `selectMode`.

@@ -37,7 +37,7 @@ chrome.runtime.sendMessage({ action: "getLocalStorage" }, (response) => {
  * Listens for messages to activate or deactivate select mode and updates the cursor accordingly.
  * @param {Object} request - The message request containing the action to perform.
  */
-chrome.runtime.onMessage.addListener((request) => {
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   console.log(request);
   if (request.action === "activate") {
     selectMode = true;
