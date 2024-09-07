@@ -2,7 +2,7 @@
 
 ## Overview
 
-<div style="text-align: center;">
+<div align="center">
     <img src="https://tenor.com/view/cinderella-fairy-godmother-magic-bippity-boppity-boo-gif-6199236.gif" alt="Fairy Godmother">
 </div>
 
