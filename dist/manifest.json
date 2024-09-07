@@ -1,0 +1,31 @@
+{
+  "manifest_version": 3,
+  "name": "Bibbidi-Bobbidi-Boo",
+  "version": "1.0.0",
+  "icons": {
+    "64": "magic-wand64.png"
+  },
+  "description": "Transform your web experience with a wave of magic!✨ This Chrome extension lets you randomly change the background color of any element on a page with a simple click.Transform your web experience with a wave of magic!✨ This Chrome extension lets you randomly change the background color of any element on a page with a simple click.",
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "action": {
+    "default_popup": "index.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "css": ["star.css"],
+      "js": ["content.js"]
+    }
+  ],
+  "permissions": ["scripting", "activeTab", "storage"],
+  "host_permissions": ["http://*/*", "https://*/*"],
+  "web_accessible_resources": [
+    {
+      "resources": ["magic-wand-cursor.png"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}
