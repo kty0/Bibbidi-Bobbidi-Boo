@@ -68,7 +68,7 @@ This extension is compatible with Chrome, Opera, and Brave browsers.
 
 1. **Activate Magic Wand Mode**
 
-   - Click on the extension icon in your browser toolbar to activate the magic wand mode.
+   - Click on the extension icon in your browser toolbar. A pop-up will appear with a button to activate the magic wand mode.
 
 2. **Interact with the Webpage**
    - Click on any element on the webpage to change its background color.
