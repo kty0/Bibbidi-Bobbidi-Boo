@@ -1,11 +1,46 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 
-function App() {
-  const [count, setCount] = useState(0)
 
+function App() {
+  const [activated,setActivated] = useState(false);
+  const [firstOpen, setFirstOpen] = useState(true);
+
+  if(firstOpen) {
+    chrome.runtime.sendMessage( {action: "getLocalStorage"},
+      (response) => {
+        console.log("Content of localStorage:", response);
+        setActivated(response.selectMode);
+      }
+    )
+  }
+
+  useEffect(() => {
+    const fetchAndSendMessage = async () => {
+      if(!firstOpen) {
+      chrome.runtime.sendMessage({action: "setLocalStorage", value: activated});
+      await chrome.tabs.query({}, (tabs) => {
+        for (let i = 0; i < tabs.length; i++) {
+          console.log(tabs[i]);
+          chrome.tabs.sendMessage(tabs[i].id,{action : activated ? "activate" : "desactivate"}, (result) => {
+            console.log("signal send : " , result);
+            })
+          }
+        })
+      }
+    }
+
+    fetchAndSendMessage();
+  },[activated]);
+
+  const onClick = async () => {
+    if(firstOpen) {
+      setFirstOpen(false);
+    }
+    activated ? setActivated(false) : setActivated(true);
+  }
   return (
     <>
       <div>
@@ -18,8 +53,8 @@ function App() {
       </div>
       <h1>Vite + React</h1>
       <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
+        <button onClick={onClick}>
+          {activated ? "desactivate": "activate"}
         </button>
         <p>
           Edit <code>src/App.jsx</code> and save to test HMR
